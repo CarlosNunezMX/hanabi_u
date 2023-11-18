@@ -1,7 +1,7 @@
-import { NotFount } from "../components/notFount";
-import { Component } from "../components/template";
-import { Render } from "./render";
-import { Route } from "./route";
+import { NotFount } from "../components/notFount.js";
+import { Component } from "../components/template.js";
+import { Render } from "./render.js";
+import type { Route } from "./route.js";
 
 export class Router {
     private Element: HTMLElement;

@@ -6,7 +6,7 @@ import { serve } from '@hono/node-server';
 const app = new Hono();
 app.get('/', serveStatic({path: './index.html'}))
 app.get('/public/*', serveStatic({
-    root: './public/'
+    root: './'
 }))
 
 serve({
