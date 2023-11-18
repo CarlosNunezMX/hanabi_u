@@ -1,0 +1,24 @@
+{
+  "name": "hanabi_u",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node bi.js",
+    "build": "tsc",
+    "build:dev": "tsc -w",
+    "serve": "node bi.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.2.3",
+    "hono": "^3.10.1",
+    "typescript": "^5.2.2"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.9.1"
+  }
+}
