@@ -1,5 +1,5 @@
-import { Component } from "../components/template.js";
-import { Route } from "./route.js";
+import { Component } from "../components/template";
+import { Route } from "./route";
 
 export class Render{
     private Element: HTMLElement;
@@ -16,13 +16,15 @@ export class Render{
             component.State = res;
             const data = component.render.bind(component)();
 
-            if(typeof data === 'string')
-                return this.Element.innerHTML = data;
-            // @ts-ignore
-            this.Element.appendChild(data);
+            if(!(data instanceof HTMLElement))
+                return this.Element.innerHTML = data.toString();
+    
+        this.Element.appendChild(data);
         })
         .catch(err => {
             alert("Application Error" + String(err));
+            console.log(err);
+            
         })
     }
 }

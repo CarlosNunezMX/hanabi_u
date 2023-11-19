@@ -1,4 +1,4 @@
-import { Component } from "./template.js";
+import { Component } from "./template";
 
 export class NotFount extends Component<string>{
     RouteName: string = "Page not fount!";

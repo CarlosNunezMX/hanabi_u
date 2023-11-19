@@ -1,4 +1,4 @@
-import {Router} from "./router/router.js";
-import {Component} from "./components/template.js";
+import {Router} from "./router/router";
+import {Component} from "./components/template";
 
 export {Component, Router}

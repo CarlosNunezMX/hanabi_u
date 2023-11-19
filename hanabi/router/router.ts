@@ -1,7 +1,7 @@
-import { NotFount } from "../components/notFount.js";
-import { Component } from "../components/template.js";
-import { Render } from "./render.js";
-import type { Route } from "./route.js";
+import { NotFount } from "../components/notFount";
+import { Component } from "../components/template";
+import { Render } from "./render";
+import type { Route } from "./route";
 
 export class Router {
     private Element: HTMLElement;
@@ -11,6 +11,7 @@ export class Router {
     constructor(Element: HTMLElement){
         this.Element = Element;
         this.Render = new Render(this.Element);
+        this.events.bind(this)()
     }
 
     addPage(route: string, component: Component<any>){
@@ -22,7 +23,7 @@ export class Router {
             Component: component,
             Root: route
         });
-
+        
         return this;
     }
 

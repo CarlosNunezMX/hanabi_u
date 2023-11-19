@@ -4,11 +4,17 @@ import {serveStatic} from '@hono/node-server/serve-static'
 import { serve } from '@hono/node-server';
 
 const app = new Hono();
+
+app.use('*', logger())
+
 app.get('/', serveStatic({path: './index.html'}))
 app.get('/public/*', serveStatic({
     root: './'
 }))
 
+app.get('/source/*', serveStatic({
+    root: './public/'
+}))
 serve({
     fetch: app.fetch,
     port: 8080,
