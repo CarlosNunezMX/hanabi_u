@@ -12,26 +12,17 @@
   },
   "dependencies": {
     "@hono/node-server": "^1.2.3",
-    "@vitejs/plugin-legacy": "^5.0.0",
-    "hono": "^3.10.1",
-    "snowpack": "^3.8.8",
-    "vite": "^5.0.0"
+    "hono": "^3.10.1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@pretendonetwork/wiiu-vino-types": "^1.0.0",
-    "@snowpack/plugin-typescript": "^1.2.1",
     "@types/jest": "^29.5.8",
     "@types/jsdom": "^21.1.5",
     "@types/node": "^20.9.1",
     "jsdom": "^22.1.0",
-    "terser": "^5.24.0",
-    "terser-webpack-plugin": "^5.3.9",
-    "ts-loader": "^9.5.1",
-    "typescript": "^5.2.2",
-    "webpack": "^5.89.0",
-    "webpack-cli": "^5.1.4"
+    "typescript": "^5.2.2"
   }
 }

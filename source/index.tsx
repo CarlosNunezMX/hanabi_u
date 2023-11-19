@@ -9,7 +9,9 @@ try {
     const HanabiRouter = new Router($app);
     HanabiRouter.addPage('/', new Home());
 
-    HanabiRouter.enroute();
+    window.onload = () => {
+        HanabiRouter.enroute.bind(HanabiRouter)();
+    }
 }
 catch(err){
     alert("ApplicationError - Source\n" + String(err));
