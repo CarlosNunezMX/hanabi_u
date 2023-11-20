@@ -1,9 +1,5 @@
-export type UserHandled = {
-    Name: string;
-    Mii: string;
-    MiiTypes: string[];
-    pid: number;
-}
+import { Mii } from "./jsx";
+import type { UserHandled } from "./types";
 
 class VinoCommon{
     User: UserHandled;
@@ -22,7 +18,7 @@ class VinoCommon{
 
     GetMiiImage(jsx: boolean){
         if(jsx)
-            return (<img src={this.User.Mii} alt={this.User.Name + " Mii"}/>)
+            return Mii(this.User);
 
         const $img = document.createElement('img');
         $img.src = this.User.Mii;

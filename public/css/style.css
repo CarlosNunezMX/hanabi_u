@@ -4,18 +4,7 @@
     box-sizing: border-box;
 }
 
-body{
-    width: 824px;
-    height: 480px;
-
-    background-color: #eee;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
 #app {
-    position: fixed;
-    top: 120;
-    left: 206px;
     text-align: center;
 }
 

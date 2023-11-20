@@ -4,9 +4,3 @@ export function Link(href: string){
 
     return $link;
 }
-
-export function LinkJSX(props: HTMLLinkElement){
-    // @ts-ignore
-    return (<a {...props} href={"#" + props.href}></a>)
-}
-

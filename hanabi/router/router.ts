@@ -1,3 +1,4 @@
+import Styles from "hanabi/styles/dynamic";
 import { NotFount } from "../components/notFount";
 import { Component } from "../components/template";
 import { Render } from "./render";
@@ -8,12 +9,18 @@ export class Router {
     private Render: Render;
     private notFount = new NotFount();
     private Routes: Route[] = [];
+    private StyleSheetController?: Styles;
     constructor(Element: HTMLElement){
         this.Element = Element;
         this.Render = new Render(this.Element);
         this.events.bind(this)()
+        this.addPage.bind(this)('/404', this.notFount);
     }
-
+    setStyles(styles: Styles){
+        this.StyleSheetController = styles;
+        this.StyleSheetController.addRequired()
+        return this;
+    }
     addPage(route: string, component: Component<any>){
         const isRegistered = this.Routes.some(_route => _route.Root === route);
         if(isRegistered)
@@ -34,20 +41,20 @@ export class Router {
     
     enroute(){
         const hash = location.hash;
-        let mainroute = this.Routes.find(route => route.Root === '/');
-        const route = hash.replace('#', "");
-        if(route === '' || route === '/'){
-            if(!mainroute)
-                return this.Render.render(this.notFount);
-
-            return this.Render.render(mainroute.Component)
+        let route = hash.replace('#', "");
+        if(route === ''){
+            route = '/'
         }
 
+        console.log("[Hanabi] - Enrouting " + route);
+        
         const component = this.Routes.find(r => r.Root === route);
-
-        if(!component)
-            return this.Render.render(this.notFount);
-
+        if(!component){
+            return location.hash = "/404"
+        }
+    
+        if(this.StyleSheetController)
+            this.StyleSheetController.process.bind(this.StyleSheetController)(route);
         return this.Render.render(component.Component);
     }
 
