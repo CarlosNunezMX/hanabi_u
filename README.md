@@ -18,6 +18,7 @@ Cosas para hacer
   + [x] Componentes JSDOM
   + [x] Componentes JSX
   + [x] CSS Dinamico
+
 Tecnologias usadas
 +   Hono `hono/jsx`
 +   Typescript, for code transpilation
