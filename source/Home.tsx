@@ -12,7 +12,7 @@ export class Home extends Component<void>{
 
     render(): HTMLElement | JSX.Element {
         return <div>
-            <img src="/public/hanabi.png" class="hanabi_logo" width={128} alt="Hanabi Logo"/>
+            <img src="/public/Hanabi.png" class="hanabi_logo" width={128} alt="Hanabi Logo"/>
             <h1>Welcome to HanabiU</h1>
             <LinkJSX href="/help">Hello World</LinkJSX>
             <span>Try editing <code>source/Home.tsx</code></span>
