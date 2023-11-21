@@ -1,9 +1,12 @@
 import { Mii } from "./jsx";
 import type { UserHandled } from "./types";
-
 class VinoCommon{
     User: UserHandled;
     Slot: number = vino.act_getCurrentSlotNo();
+    Lang: string = vino.info_getLanguage();
+    AgeDivision: number = vino.act_getAgeDivision(this.Slot);    
+    Avadible: boolean = !!window.vino;
+    
     constructor(){
         this.User = this.HandleMii();
     }
