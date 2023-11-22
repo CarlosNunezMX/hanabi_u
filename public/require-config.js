@@ -4,7 +4,8 @@ require.config({
     'hono/jsx': 'hanabi/jsx',
     'source': 'source',
     'hanabi': 'hanabi',
-    'app': 'source/index'
+    'app': 'source/index',
+    'dev': 'dev'
   }
 });
 

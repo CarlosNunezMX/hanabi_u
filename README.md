@@ -10,7 +10,9 @@ Nintendo Wii U, en el cual podrás utilizar funcionalidades modernas de Javascri
 Cosas para hacer
 + [ ] Utilizar las API's de WiiU
     + [ ] VINO
+      + [ ] Polyfill para PC
     + [x] API de WiiU Browser
+      + [x] Polyfill para PC
 + [x] Hacer polyfills
   + [x] Array.foreach/map/includes
   + [x] Fetch

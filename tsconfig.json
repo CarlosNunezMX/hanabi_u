@@ -10,7 +10,7 @@
     /* Modules */
     "module": "AMD",                                /* Specify what module code is generated. */
     "moduleResolution": "Node",
-    "rootDirs": ["./hanabi", "./source"],                                   /* Allow multiple folders to be treated as one when resolving modules. */
+    "rootDirs": ["./hanabi", "./source", "./dev"],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     "types": ["node", "./global.d.ts", "hono"],                                      /* Specify type package names to be included without being referenced in a source file. */
 
    "baseUrl": "./", // Ruta base de tus módulos en TypeScript

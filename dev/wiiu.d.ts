@@ -301,6 +301,12 @@ interface BrowserAPI {
      * {@link https://wiiubrew.org/wiki/Internet_Browser#wiiu.videoplayer **WiiUBrew**}
      */
     videoplayer: VideoAPI;
+
+    /**
+     * The wiiu.imageview object manages the Image Preview feature.
+     * {@link https://wiiubrew.org/wiki/Internet_Browser#wiiu.imageview **WiiUBrew**}
+     */
+    imageview: ImageAPI;
 }
 declare global {
     interface Window {

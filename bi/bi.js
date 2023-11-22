@@ -13,7 +13,7 @@ app.get('/public/*', serveStatic({
 }))
 
 app.get('/source/*', serveStatic({
-    root: './public/'
+    root: './'
 }))
 serve({
     fetch: app.fetch,

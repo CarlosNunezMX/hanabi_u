@@ -5,10 +5,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node bi.js",
+    "start": "node /bi/bi.js",
     "build": "tsc",
     "build:dev": "tsc -w",
-    "serve": "node bi.js"
+    "bi": "node ./bi/bi.js",
+    "hana": "node bi/hana.js"
   },
   "dependencies": {
     "@hono/node-server": "^1.2.3",
