@@ -1,7 +1,8 @@
+import 'hanabi/router/hana'
 import { Home } from "source/Home";
 import { Router } from "hanabi/router/router";
-
 import MyStyles from 'source/stylesheets';
+Hana.debug = true;
 const $app = document.getElementById('app');
 
 if (!$app)

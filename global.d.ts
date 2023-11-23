@@ -1,3 +1,4 @@
-import "@pretendonetwork/wiiu-vino-types"
-import 'dev/hana'
-import "dev/wiiu"
+import "@pretendonetwork/wiiu-vino-types";
+import "dev/wiiu";
+import "dev/hana";
+import "@pretendonetwork/wiiu-dialog-types"

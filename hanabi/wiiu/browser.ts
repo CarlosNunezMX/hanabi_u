@@ -20,11 +20,11 @@ export class BrowserCommon{
 
     usePolyfill(){
         return new Promise<void>(e => {
-            if(!window.wiiu || !!wiiu){
-                console.log("Using polyfill...")
+            if(!window.wiiu || !wiiu){
+                Hana.log('Polyfill for wiiu is loading!', 'LOG')
                 import('./browser.polyfill')
                     .then(pollyfill => {
-                        console.log("Polyfill is loaded!")
+                        Hana.log('Polyfill for wiiu loaded!', 'LOG')
                         e();
                     })
             }
