@@ -21,6 +21,9 @@ Cosas para hacer
   + [x] Componentes JSDOM
   + [x] Componentes JSX
   + [x] CSS Dinamico
++ [ ] Funcionalidades Especiales
+  + [ ] Eventos del Servidor (Server Side Events)
+  + [ ] WebSockets
 
 Tecnologias usadas
 +   Hono `hono/jsx`

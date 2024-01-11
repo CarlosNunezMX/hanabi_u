@@ -4,21 +4,21 @@ export class StyleSheet {
     mounthOn: '*' | string;
     styleSheet?: HTMLLinkElement;
 
-    constructor(stylesheet: StyleSheet){
+    constructor(stylesheet: StyleSheet) {
         this.cache = stylesheet.cache;
         this.mounthOn = stylesheet.mounthOn;
         this.url = stylesheet.url
     }
 }
-export default class Styles{
+export default class Styles {
     Stylesheets: StyleSheet[] = [];
     Childrens: HTMLLinkElement[] = [];
 
-    constructor(){
+    constructor() {
 
     }
 
-    addRequired(){
+    addRequired() {
         const required = this.Stylesheets.filter(style => {
             return style.cache || style.mounthOn === '*'
         });
@@ -29,36 +29,40 @@ export default class Styles{
         })
     }
 
-    addStyleSheet(styles: StyleSheet){
+    addStyleSheet(styles: StyleSheet) {
         styles.styleSheet = this.createLink(styles);
         this.Stylesheets.push(styles);
 
         return this;
     }
 
-    process(loc: string){
+    process(loc: string) {
         const not = this.Stylesheets.filter(style => {
-            return style.mounthOn !== '*' && (style.cache && loc !== style.mounthOn); 
+            return style.mounthOn !== '*' && (style.cache && loc !== style.mounthOn);
         });
 
         console.log('Removing...', not);
-        
+
         const yes = this.Stylesheets.filter(style => {
-            return (loc === style.mounthOn); 
+            return (loc === style.mounthOn);
         });
 
         console.log("Adding...", yes);
-        
+        console.log(not);
+
         not.forEach(style => {
             // @ts-ignore
-            document.head.removeChild(style.styleSheet)
+            if (document.head.contains(style.styleSheet)) {
+                // @ts-ignore
+                document.head.removeChild(style.styleSheet);
+            }
         })
         // @ts-ignore
         yes.forEach(style => document.head.appendChild(style.styleSheet))
 
     }
 
-    createLink(stylesheet: StyleSheet){
+    createLink(stylesheet: StyleSheet) {
         const $stylesheet = document.createElement('link');
         $stylesheet.rel = "stylesheet";
         $stylesheet.setAttribute('data-page', stylesheet.url)
