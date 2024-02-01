@@ -1,4 +1,4 @@
-import Styles from "hanabi/styles/dynamic";
+import { DynamicStyleSheet, StyleSheet} from "hanabi/styles/dynamic";
 import { NotFount } from "../components/notFount";
 import { Component } from "../components/template";
 import { Render } from "./render";
@@ -9,17 +9,11 @@ export class Router {
     private Render: Render;
     private notFount = new NotFount();
     private Routes: Route[] = [];
-    private StyleSheetController?: Styles;
     constructor(Element: HTMLElement){
         this.Element = Element;
         this.Render = new Render(this.Element);
         this.events.bind(this)()
         this.addPage.bind(this)('/404', this.notFount);
-    }
-    setStyles(styles: Styles){
-        this.StyleSheetController = styles;
-        this.StyleSheetController.addRequired()
-        return this;
     }
     addPage(route: string, component: Component<any>){
         const isRegistered = this.Routes.some(_route => _route.Root === route);
@@ -34,11 +28,12 @@ export class Router {
         return this;
     }
 
-    setNotFoundPage(Page: Component<any>){
+    setNotFoundPage(Page: Component<string>){
+        // @ts-ignore
         this.notFount = Page;
         return this;
     }
-    
+
     enroute(){
         const hash = location.hash;
         let route = hash.replace('#', "");
@@ -53,8 +48,9 @@ export class Router {
             return location.hash = "/404"
         }
     
-        if(this.StyleSheetController)
-            this.StyleSheetController.process.bind(this.StyleSheetController)(route);
+        const ComponentStyles = component.Component.Styles;
+        if(ComponentStyles)
+            ComponentStyles.mount.bind(ComponentStyles)();
         return this.Render.render(component.Component);
     }
 

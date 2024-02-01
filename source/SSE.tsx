@@ -2,9 +2,11 @@ import { Component } from "hanabi/components/template";
 import { LinkJSX } from "hanabi/components/jsx/link";
 import { HanabiSSE_Event, SSE } from "hanabi/SSE/sse";
 
-export class SSE_Testing extends Component<any> {
+export class SSE_Testing implements Component<any> {
     RouteName: string = "SSE Testing";
     SSE = new SSE("/sse_testing")
+    State: any;
+
     render(): HTMLElement | JSX.Element {
         let Sse = this.SSE.JSX.bind(this.SSE)
         return <div>
@@ -22,6 +24,7 @@ export class SSE_Testing extends Component<any> {
             <p>Recived: {event.data}</p>
         )
     }
+    beforeMount(){};
 
     Mounted(): void {
         this.SSE.start.bind(this.SSE)();

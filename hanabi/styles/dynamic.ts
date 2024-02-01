@@ -2,8 +2,8 @@ export class StyleSheet {
     url: string;
     cache: boolean;
     styleSheet?: HTMLLinkElement;
-    cached: boolean = false;
-    mounted = false;
+    cached?: boolean = false;
+    mounted? = false;
 
     constructor(stylesheet: StyleSheet) {
         this.cache = stylesheet.cache;
@@ -48,10 +48,11 @@ export class DynamicStyleSheet {
     }
 
     umount(){
-        this.PageStyleSheets.forEach(e => {
+        this.PageStyleSheets.forEach((e, i) => {
             if(!e.styleSheet)
                 throw "Cannot unload a element who is not appended to document body";
             document.body.removeChild(e.styleSheet);
+            this.PageStyleSheets[i].mounted = false;
         })
         this.mounted = false;
     }

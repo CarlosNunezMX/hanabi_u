@@ -1,9 +1,11 @@
-export class Component<TState>{
-    RouteName: string = "";
-    State: TState | any= {};
-    render(): HTMLElement | JSX.Element{return document.createElement('div')};
-    // @ts-ignore
-    beforeMount(): Promise<TState>{return new Promise(res => res())}
-    Mounted(): void{}
-    umount(): Promise<void> | void{}
+import { DynamicStyleSheet } from "hanabi/styles/dynamic";
+
+export interface Component<TState>{
+    RouteName: string;
+    State: TState | any;
+    render: () => HTMLElement | JSX.Element;
+    beforeMount: () => Promise<any> | void;
+    Mounted: () => void;
+    Styles?: DynamicStyleSheet;
+    umount: () => Promise<TState> | void;
 }

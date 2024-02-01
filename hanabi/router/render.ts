@@ -7,18 +7,10 @@ export class Render{
     constructor(Element: HTMLElement){
         this.Element = Element;
     }
-    render(component: Component<any>){
-        if(this.lastComponent){
-            this.lastComponent.umount.bind(this.lastComponent)();
-        }
-        this.Element.innerHTML = '';
-        document.title = component.RouteName;
-
-        component.beforeMount.bind(component)()
-        .then(res => {
-            console.log("Mounting Component " + component.RouteName + "...");
+    private mountComponent(component: Component<any>, response: any){
+        console.log("Mounting Component " + component.RouteName + "...");
             
-            component.State = res;
+            component.State = response;
             const data = component.render.bind(component)();
             
             if(!(data instanceof HTMLElement)){
@@ -32,11 +24,25 @@ export class Render{
             console.log("Component " + component.RouteName + " mounted!")
 
             this.lastComponent = component;
-        })
-        .catch(err => {
-            alert("Application Error\n" + String(err));
-            console.log(err);
-            
-        })
+    }
+    render(component: Component<any>){
+        if(this.lastComponent){
+            const StyleSheet = this.lastComponent.Styles;
+            if(StyleSheet)
+                StyleSheet.umount();
+            this.lastComponent.umount.bind(this.lastComponent)();
+        }
+        this.Element.innerHTML = '';
+        document.title = component.RouteName;
+        const Response = component.beforeMount.bind(component)()
+        if(Response instanceof Promise)
+            Response.then(res => this.mountComponent.bind(this)(component, res))
+            .catch(err => {
+                alert("Application Error\n" + String(err));
+                console.log(err);
+                
+            })
+        else this.mountComponent.bind(this)(component, Response);
+        
     }
 }
