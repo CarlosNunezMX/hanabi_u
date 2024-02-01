@@ -1,72 +1,72 @@
 export class StyleSheet {
     url: string;
     cache: boolean;
-    mounthOn: '*' | string;
     styleSheet?: HTMLLinkElement;
+    cached: boolean = false;
+    mounted = false;
 
     constructor(stylesheet: StyleSheet) {
         this.cache = stylesheet.cache;
-        this.mounthOn = stylesheet.mounthOn;
         this.url = stylesheet.url
     }
 }
-export default class Styles {
-    Stylesheets: StyleSheet[] = [];
-    Childrens: HTMLLinkElement[] = [];
 
-    constructor() {
+export class DynamicStyleSheet {
+    PageStyleSheets: StyleSheet[] = [];
+    mounted = false;
+    mountCatche(){
+        this.PageStyleSheets.forEach((e, index) => {
+            if(!e.cache || e.cached)
+                return;
+            const $style = document.createElement('link');
+            $style.rel = "stylesheet";
+            $style.href = e.url;
 
-    }
-
-    addRequired() {
-        const required = this.Stylesheets.filter(style => {
-            return style.cache || style.mounthOn === '*'
-        });
-
-        required.forEach(style => {
-            // @ts-ignore
-            document.head.appendChild(style.styleSheet);
-        })
-    }
-
-    addStyleSheet(styles: StyleSheet) {
-        styles.styleSheet = this.createLink(styles);
-        this.Stylesheets.push(styles);
-
-        return this;
-    }
-
-    process(loc: string) {
-        const not = this.Stylesheets.filter(style => {
-            return style.mounthOn !== '*' && (style.cache && loc !== style.mounthOn);
-        });
-
-        console.log('Removing...', not);
-
-        const yes = this.Stylesheets.filter(style => {
-            return (loc === style.mounthOn);
-        });
-
-        console.log("Adding...", yes);
-        console.log(not);
-
-        not.forEach(style => {
-            // @ts-ignore
-            if (document.head.contains(style.styleSheet)) {
-                // @ts-ignore
-                document.head.removeChild(style.styleSheet);
+            $style.onload = (event) => {
+                document.body.removeChild($style);
             }
+
+            document.body.appendChild($style);
+            this.PageStyleSheets[index].styleSheet = $style;
+            this.PageStyleSheets[index].cached = true;
+
         })
-        // @ts-ignore
-        yes.forEach(style => document.head.appendChild(style.styleSheet))
+    }
+    
+    constructor(initialState: StyleSheet[]){
+        this.PageStyleSheets = initialState;
+        this.mountCatche();
+    }
+
+    appendStyle(stylesheet: StyleSheet){
+        this.PageStyleSheets.push(stylesheet);
+        if(stylesheet.cache)
+            this.mountCatche.bind(this)();
+        if(this.mounted)
+            this.mount.bind(this)()
 
     }
 
-    createLink(stylesheet: StyleSheet) {
-        const $stylesheet = document.createElement('link');
-        $stylesheet.rel = "stylesheet";
-        $stylesheet.setAttribute('data-page', stylesheet.url)
-        $stylesheet.href = stylesheet.url;
-        return $stylesheet;
+    umount(){
+        this.PageStyleSheets.forEach(e => {
+            if(!e.styleSheet)
+                throw "Cannot unload a element who is not appended to document body";
+            document.body.removeChild(e.styleSheet);
+        })
+        this.mounted = false;
+    }
+
+    mount(){
+        this.PageStyleSheets.forEach(($e, index) => {
+            if($e.mounted)
+                return;
+            const $style = document.createElement('link');
+            $style.rel = "stylesheet";
+            $style.href = $e.url;
+
+            document.body.appendChild($style);
+            this.PageStyleSheets[index].styleSheet = $style;
+            this.PageStyleSheets[index].mounted = true;
+        })
     }
 }
