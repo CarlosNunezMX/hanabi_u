@@ -26,7 +26,7 @@ Cosas para hacer
   + [ ] WebSockets
 
 Tecnologias usadas
-+   Hono `hono/jsx`
++   Hono `hono/jsx` - Agradecemos a el equipo de Hono por desarrollar, esto no le pedi permiso pero gracias 😄
 +   Typescript, for code transpilation
 
 Soporte actual
