@@ -4,7 +4,12 @@ interface HanaAPI {
     version: string;
     host: string;
     debug: boolean;
-    log: (body: string | object, type: LogType) => Promise<void> | void
+    log: (body: string | object, type: LogType) => Promise<void> | void,
+    enviroment: {
+        sockets: boolean,
+        sse: boolean,
+        wiiu: boolean
+    }
 }
 declare global {
     interface Window {

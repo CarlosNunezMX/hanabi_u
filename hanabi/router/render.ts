@@ -42,7 +42,6 @@ export class Render{
             .catch(err => {
                 alert("Application Error\n" + String(err));
                 console.log(err);
-                
             })
         else this.mountComponent.bind(this)(component, Response);
         

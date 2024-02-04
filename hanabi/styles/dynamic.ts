@@ -35,7 +35,7 @@ export class DynamicStyleSheet {
     
     constructor(initialState: StyleSheet[]){
         this.PageStyleSheets = initialState;
-        this.mountCatche();
+        this.mountCatche.bind(this)();
     }
 
     appendStyle(stylesheet: StyleSheet){

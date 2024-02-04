@@ -22,7 +22,8 @@ Cosas para hacer
   + [x] Componentes JSX
   + [x] CSS Dinamico
 + [ ] Funcionalidades Especiales
-  + [ ] Eventos del Servidor (Server Side Events)
+  + [x] Eventos del Servidor (Server Side Events)
+  + [x] Lazy Load Component (Componentes que se cargan cuando se necesitan)
   + [ ] WebSockets
 
 Tecnologias usadas

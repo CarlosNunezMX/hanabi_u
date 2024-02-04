@@ -5,17 +5,17 @@ import { LazyLoadComponent } from 'hanabi/router/lazyLoadComponent';
 Hana.debug = true;
 const $app = document.getElementById('app');
 
-const SSE_Component = new LazyLoadComponent('source/SSE');
-
-if (!$app)
-    throw new Error("Application element is undefined")
-
 try {
+    const SSE_Component = new LazyLoadComponent('source/SSE');
+    if (!$app)
+        throw new Error("Application element is undefined")
+
     const HanabiRouter = new Router($app)
     HanabiRouter.addPage('/', new Home());
     HanabiRouter.addPage('/sse', SSE_Component);
     HanabiRouter.enroute.bind(HanabiRouter)();
 }
+
 catch(err){
     alert("ApplicationError - Source\n" + String(err));
     console.error(err)

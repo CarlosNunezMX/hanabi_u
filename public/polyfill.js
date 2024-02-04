@@ -70,7 +70,6 @@ if (!Array.prototype.every) {
 
 if (!Array.prototype.some) {
     Array.prototype.some = function (callback) {
-        var z = [];
         var x = false;
         for (var i = 0; i < this.length; i++) {
             if (callback(this[i], i, this)) {

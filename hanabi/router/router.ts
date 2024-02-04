@@ -52,6 +52,7 @@ export class Router {
         if (component.Component instanceof LazyLoadComponent && !component.Component.component) {
             return component.Component.load.bind(this.Routes[componentIndex].Component)()
                 .then(response => this.callLoader.bind(this)(this.Routes[componentIndex]))
+                .catch(err => {throw err})
         }
 
         return this.callLoader.bind(this)(component);

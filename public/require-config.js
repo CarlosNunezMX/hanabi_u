@@ -18,5 +18,5 @@ require.config({
 });
 
 require(['app'], function (app) {
-  // Inicializa la aplicación aquí si es necesario
+  
 });
