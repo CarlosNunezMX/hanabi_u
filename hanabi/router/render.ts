@@ -26,6 +26,8 @@ export class Render{
             this.lastComponent = component;
     }
     render(component: Component<any>){
+        console.log(component);
+        
         if(this.lastComponent){
             const StyleSheet = this.lastComponent.Styles;
             if(StyleSheet)
