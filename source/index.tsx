@@ -1,9 +1,11 @@
 import 'hanabi/router/hana'
 import { Home } from "source/Home";
 import { Router } from "hanabi/router/router";
-import { SSE_Testing } from 'source/SSE';
+import { LazyLoadComponent } from 'hanabi/router/lazyLoadComponent';
 Hana.debug = true;
 const $app = document.getElementById('app');
+
+const SSE_Component = new LazyLoadComponent('source/SSE');
 
 if (!$app)
     throw new Error("Application element is undefined")
@@ -11,7 +13,7 @@ if (!$app)
 try {
     const HanabiRouter = new Router($app)
     HanabiRouter.addPage('/', new Home());
-    HanabiRouter.addPage('/sse', new SSE_Testing())
+    HanabiRouter.addPage('/sse', SSE_Component);
     HanabiRouter.enroute.bind(HanabiRouter)();
 }
 catch(err){
